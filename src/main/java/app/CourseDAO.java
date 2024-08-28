@@ -54,7 +54,4 @@ public class CourseDAO implements GenericDAO<Course, Integer> {
         }
     }
 
-    public void close(){
-        emf.close();
-    }
 }
