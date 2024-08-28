@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table (name = "student")
@@ -42,7 +43,25 @@ public class Student {
     @Column (name = "enrollment_date")
    private LocalDate enrollmentDate;
 
+    public Student(String name, String phonenumber, String email, String address, Boolean isStudying, LocalDate dateOfBirth, LocalDate enrollmentDate) {
+        this.name = name;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.address = address;
+        this.isStudying = isStudying;
+        this.dateOfBirth = dateOfBirth;
+        this.enrollmentDate = enrollmentDate;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student student)) return false;
+        return Objects.equals(getName(), student.getName()) && Objects.equals(getPhonenumber(), student.getPhonenumber()) && Objects.equals(getEmail(), student.getEmail()) && Objects.equals(getAddress(), student.getAddress()) && Objects.equals(getIsStudying(), student.getIsStudying()) && Objects.equals(getDateOfBirth(), student.getDateOfBirth()) && Objects.equals(getEnrollmentDate(), student.getEnrollmentDate());
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPhonenumber(), getEmail(), getAddress(), getIsStudying(), getDateOfBirth(), getEnrollmentDate());
+    }
 }
