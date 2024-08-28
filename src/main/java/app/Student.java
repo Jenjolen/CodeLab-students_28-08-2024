@@ -1,22 +1,46 @@
 package app;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDate;
 
+@Entity
+@Table (name = "student")
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Student {
 
-    String name;
+    @Column
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
 
-    String phonenumber;
+    @Column (name = "name")
+   private String name;
 
-    String email;
+    @Column (name = "phone_number")
+   private String phonenumber;
 
-    String address;
+    @Column (name = "email")
+   private String email;
 
-    Boolean isStudying;
+    @Column (name = "address")
+   private String address;
 
-    LocalDate dateOfBirth;
+    @Column (name = "is_studying")
+   private Boolean isStudying;
 
-    LocalDate enrollmentDate;
+    @Column (name = "date_of_birth")
+   private LocalDate dateOfBirth;
+
+    @Column (name = "enrollment_date")
+   private LocalDate enrollmentDate;
 
 
 
