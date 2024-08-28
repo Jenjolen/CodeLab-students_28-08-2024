@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+import java.util.List;
+
 public class CourseDAO implements GenericDAO<Course, Integer> {
 
     private static CourseDAO instance;
@@ -51,6 +53,13 @@ public class CourseDAO implements GenericDAO<Course, Integer> {
             Course updatedCourse = em.merge(entity);
             em.getTransaction().commit();
             return updatedCourse;
+        }
+    }
+
+    @Override
+    public List<Course> findAll() {
+        try(EntityManager em = emf.createEntityManager()) {
+            return em.createQuery("from Course").getResultList();
         }
     }
 

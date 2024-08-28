@@ -63,6 +63,7 @@ class CourseDAOTest {
 
     }
 
+
     @Test
     void updateEntity() {
 
@@ -74,4 +75,10 @@ class CourseDAOTest {
 
         assertNotEquals(unmodifiedCourse.getTeacher(), modifiedCourse.getTeacher());
     }
+
+//    @Test
+    void findAll() {
+        dao.findAll();
+    }
+
 }
