@@ -78,7 +78,11 @@ public class HibernateConfig {
         // configuration.addAnnotatedClass(<YOUR ENTITY>.class);
         //configuration.addAnnotatedClass(Person.class);
 //        configuration.addAnnotatedClass(Point.class); // Vi giver Point-klassen til Hibernate, så den kn konvertere den til SQL og sætte den ind i databasen.
+
         configuration.addAnnotatedClass(Student.class);
+
+        configuration.addAnnotatedClass(Course.class);
+
     }
 
     public static EntityManagerFactory getEntityManagerFactoryConfig(Boolean isTest) {
