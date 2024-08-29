@@ -47,7 +47,9 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
     @Override
     public Student findEntity(Integer id) {
         try(EntityManager em = emf.createEntityManager()) {
-            return em.find(Student.class, id);
+            return em.createNamedQuery("Student.findById", Student.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
         }
     }
 
@@ -64,7 +66,7 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
     @Override
     public List<Student> findAll() {
         try(EntityManager em = emf.createEntityManager()) {
-            return em.createQuery("from Student").getResultList();
+           return em.createNamedQuery("Student.findAll", Student.class).getResultList();
         }
     }
 

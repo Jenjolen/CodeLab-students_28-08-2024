@@ -17,6 +17,10 @@ import java.util.Objects;
 @ToString
 @Getter
 @Setter
+@NamedQueries({
+        @NamedQuery(name = "Student.findAll", query = "SELECT s from Student s"),
+        @NamedQuery(name = "Student.findById", query = "select s from Student s where s.id = :id")
+})
 public class Student {
 
     private String regex = "^[A-Za-z0-9+_.-]+@(.+)$";

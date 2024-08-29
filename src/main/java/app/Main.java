@@ -16,8 +16,8 @@ public class Main {
         StudentDAOImpl dao = StudentDAOImpl.getInstance(emf);
         Student testSubject = new Student("Jearnevios", "12345678", "skibidi@toilet.com", "gamer st.", true, LocalDate.now(), LocalDate.now(), CourseName.SPORTS);
         dao.saveEntity(testSubject);
-        testSubject.setEmail("gamermailcom");
-        dao.updateEntity(testSubject,1);
-
+//        testSubject.setEmail("gamermailcom");
+//        dao.updateEntity(testSubject,1);
+        System.out.println(dao.findAll());
     }
 }
