@@ -1,5 +1,6 @@
 package app.DAOs;
 
+import app.Models.Course;
 import app.Models.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -28,19 +29,25 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
     em.persist(entity);
     em.getTransaction().commit();
     em.close();
-
-
     }
 
 
     @Override
     public int deleteEntity(Integer id) {
-        return 0;
+        try(EntityManager em = emf.createEntityManager()) {
+            Student deletedStudent = em.find(Student.class, id);
+            em.getTransaction().begin();
+            em.remove(deletedStudent);
+            em.getTransaction().commit();
+            return deletedStudent.getId();
+        }
     }
 
     @Override
     public Student findEntity(Integer id) {
-        return null;
+        try(EntityManager em = emf.createEntityManager()) {
+            return em.find(Student.class, id);
+        }
     }
 
     @Override
@@ -55,6 +62,8 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
 
     @Override
     public List<Student> findAll() {
-        return List.of();
+        try(EntityManager em = emf.createEntityManager()) {
+            return em.createQuery("from Student").getResultList();
+        }
     }
 }
