@@ -72,7 +72,7 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
 
     public List<Student> getAllStudentsFromCourse(CourseName course) {
         try(EntityManager em = emf.createEntityManager()){
-            return em.createQuery("from Student s where s.courseName = :courseName", Student.class)
+            return em.createNamedQuery("Student.findAllByCourse", Student.class)
                     .setParameter("courseName", course)
                     .getResultList();
         }
