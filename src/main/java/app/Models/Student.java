@@ -1,5 +1,6 @@
 package app.Models;
 
+import app.Models.Enums.CourseName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,7 +53,10 @@ public class Student {
     @Column (name = "enrollment_date")
    private LocalDate enrollmentDate;
 
-    public Student(String name, String phonenumber, String email, String address, Boolean isStudying, LocalDate dateOfBirth, LocalDate enrollmentDate) {
+    @Column (name = "course_name")
+    private CourseName courseName;
+
+    public Student(String name, String phonenumber, String email, String address, Boolean isStudying, LocalDate dateOfBirth, LocalDate enrollmentDate, CourseName courseName) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -60,6 +64,7 @@ public class Student {
         this.isStudying = isStudying;
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = enrollmentDate;
+        this.courseName = courseName;
     }
 
     @Override

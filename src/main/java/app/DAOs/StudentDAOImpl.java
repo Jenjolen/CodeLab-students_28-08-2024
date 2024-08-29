@@ -1,6 +1,7 @@
 package app.DAOs;
 
 import app.Models.Course;
+import app.Models.Enums.CourseName;
 import app.Models.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -66,4 +67,13 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
             return em.createQuery("from Student").getResultList();
         }
     }
+
+    public List<Student> getAllStudentsFromCourse(CourseName course) {
+        try(EntityManager em = emf.createEntityManager()){
+            return em.createQuery("from Student s where s.courseName = :courseName", Student.class)
+                    .setParameter("courseName", course)
+                    .getResultList();
+        }
+    }
+
 }
