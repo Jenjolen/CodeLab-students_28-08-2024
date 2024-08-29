@@ -3,7 +3,6 @@ package app;
 import app.DAOs.CourseDAO;
 import app.Models.Course;
 import app.Models.Enums.CourseName;
-import app.Config.HibernateConfig;
 import jakarta.persistence.EntityManagerFactory;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.BeforeAll;

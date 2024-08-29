@@ -1,4 +1,4 @@
-package app.Config;
+package app;
 
 
 import app.Models.Course;

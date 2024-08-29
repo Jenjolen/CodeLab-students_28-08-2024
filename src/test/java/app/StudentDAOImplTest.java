@@ -3,7 +3,6 @@ package app;
 import app.DAOs.StudentDAOImpl;
 import app.Models.Enums.CourseName;
 import app.Models.Student;
-import app.Config.HibernateConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.BeforeAll;
