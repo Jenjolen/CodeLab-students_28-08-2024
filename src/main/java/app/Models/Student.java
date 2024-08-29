@@ -20,7 +20,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "Student.findAll", query = "SELECT s from Student s"),
         @NamedQuery(name = "Student.findById", query = "select s from Student s where s.id = :id"),
-        @NamedQuery(name = "Student.findAllByCourse", query = "select s from Student s where s.courseName = :courseName")
+        @NamedQuery(name = "Student.findAllByCourse", query = "select s from Student s where s.courseName = ?1")
 })
 public class Student {
 
