@@ -1,6 +1,8 @@
 package app;
 
 
+import app.Models.Course;
+import app.Models.Student;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
 import org.hibernate.SessionFactory;
@@ -8,7 +10,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import java.awt.*;
 import java.util.Properties;
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
@@ -33,7 +34,8 @@ public class HibernateConfig {
             props.put("hibernate.connection.driver_class", "org.postgresql.Driver"); // driver class for postgresql
             props.put("hibernate.archive.autodetection", "class"); // hibernate scans for annotated classes
             props.put("hibernate.current_session_context_class", "thread"); // hibernate current session context
-            props.put("hibernate.hbm2ddl.auto", "update"); // hibernate creates tables based on entities
+//            props.put("hibernate.hbm2ddl.auto", "update"); // hibernate creates tables based on entities
+            props.put("hibernate.hbm2ddl.auto", "create-drop"); // hibernate creates tables based on entities
 
 
             return getEntityManagerFactory(configuration, props);

@@ -1,5 +1,6 @@
-package app;
+package app.Models;
 
+import app.Models.Enums.CourseName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +18,8 @@ import java.util.Objects;
 @Getter
 @Setter
 public class Student {
+
+    private String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
 
     @Column
     @Id
@@ -31,6 +35,12 @@ public class Student {
     @Column (name = "email")
    private String email;
 
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @Column (name = "address")
    private String address;
 
@@ -43,7 +53,10 @@ public class Student {
     @Column (name = "enrollment_date")
    private LocalDate enrollmentDate;
 
-    public Student(String name, String phonenumber, String email, String address, Boolean isStudying, LocalDate dateOfBirth, LocalDate enrollmentDate) {
+    @Column (name = "course_name")
+    private CourseName courseName;
+
+    public Student(String name, String phonenumber, String email, String address, Boolean isStudying, LocalDate dateOfBirth, LocalDate enrollmentDate, CourseName courseName) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -51,6 +64,7 @@ public class Student {
         this.isStudying = isStudying;
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = enrollmentDate;
+        this.courseName = courseName;
     }
 
     @Override
@@ -63,5 +77,28 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getPhonenumber(), getEmail(), getAddress(), getIsStudying(), getDateOfBirth(), getEnrollmentDate());
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.email.matches(regex)){
+        System.out.println("Persist: all good in the hood");
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+        } else {
+        System.out.println("Persist: go out with honor 🗡");
+        throw new IllegalArgumentException("");
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        if (this.email.matches(regex)){
+            System.out.println("Update: all good in the hood");
+            updatedAt = LocalDateTime.now();
+        } else {
+        System.out.println("Update: go out with honor 🗡");
+        throw new IllegalArgumentException("");
+        }
     }
 }
