@@ -66,7 +66,20 @@ public class StudentDAOImpl implements GenericDAO<Student, Integer> {
     @Override
     public List<Student> findAll() {
         try(EntityManager em = emf.createEntityManager()) {
-            return em.createQuery("from Student").getResultList();
+            // var = variabel, Java finder selv ud af hvad returværdien skal være
+//            return em.createQuery("from Student").getResultList();
+            return em.createNamedQuery("Student.findAll", Student.class).getResultList();
         }
     }
+
+
+    public Student findEntityByEmail(String email) {
+        try(var em = emf.createEntityManager()) {
+            return em.createNamedQuery("Student.findByEmail", Student.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        }
+    }
+
+
 }

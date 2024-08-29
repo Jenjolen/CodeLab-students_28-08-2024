@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name="Student.findAll", query="SELECT s from Student s") // kalde en query med det valgte name
+@NamedQuery(name = "Student.findByEmail", query = "SELECT s FROM Student s WHERE s.email = :email")
+//@NamedQuery(name = "Student.findbyCourseName", query = "SELECT s FROM Student WHERE Course.name = :name")
 @Table (name = "student")
 @NoArgsConstructor
 @ToString
