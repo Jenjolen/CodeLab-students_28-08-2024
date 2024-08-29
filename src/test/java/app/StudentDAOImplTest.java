@@ -53,4 +53,14 @@ class StudentDAOImplTest {
         Student retrievedStudent = em.find(Student.class, test.getId());
         assertEquals(test, retrievedStudent);
     }
+
+
+//    @Test
+//    void persistAndUpdate() {
+//
+//        student1.ifYouPersist();
+//        student2.ifYouUpdate();
+//    }
+
+
 }
