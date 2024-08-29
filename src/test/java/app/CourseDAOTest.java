@@ -1,5 +1,9 @@
 package app;
 
+import app.DAOs.CourseDAO;
+import app.Models.Course;
+import app.Models.Enums.CourseName;
+import app.config.HibernateConfig;
 import jakarta.persistence.EntityManagerFactory;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,10 +17,10 @@ class CourseDAOTest {
     private static EntityManagerFactory emf;
     private static CourseDAO dao;
 
-    Course tc1 = new Course("testcourse1","teacher1",1,"room1",DateTime.now());
-    Course tc2 = new Course("testcourse2","teacher2",2,"room2",DateTime.now());
-    Course tc3 = new Course("testcourse3","teacher3",3,"room3",DateTime.now());
-    Course tc4 = new Course("testcourse4","teacher4",4,"room4",DateTime.now());
+    Course tc1 = new Course(CourseName.MATH,"teacher1",1,"room1",DateTime.now());
+    Course tc2 = new Course(CourseName.ENGLISH,"teacher2",2,"room2",DateTime.now());
+    Course tc3 = new Course(CourseName.ART,"teacher3",3,"room3",DateTime.now());
+    Course tc4 = new Course(CourseName.MUSIC,"teacher4",4,"room4",DateTime.now());
 
     @BeforeAll
     static void setUpBA() {
@@ -39,7 +43,7 @@ class CourseDAOTest {
 
 //    @Test
     void saveEntity() { //don't really knwo hwo to test this, since it is a void method
-        Course testCourse = new Course("test","l",3,"rum",DateTime.now());
+        Course testCourse = new Course(CourseName.HISTORY,"l",3,"rum",DateTime.now());
         dao.saveEntity(testCourse);
     }
 

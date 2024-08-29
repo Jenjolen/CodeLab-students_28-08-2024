@@ -1,5 +1,6 @@
-package app;
+package app.Models;
 
+import app.Models.Enums.CourseName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ public class Course {
     private int id;
 
     @Column(name = "course_name", nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private CourseName name;
 
     @Column(name = "course_teacher",nullable = false)
     private String teacher; //TODO: change "String" to class "Person" once we have access to it
@@ -35,7 +37,7 @@ public class Course {
     @Column(name = "course_time", nullable = false)
     private DateTime timeOfCourse;
 
-    public Course(String name, String teacher, int semester, String classroom, DateTime timeOfCourse) {
+    public Course(CourseName name, String teacher, int semester, String classroom, DateTime timeOfCourse) {
         this.name = name;
         this.teacher = teacher;
         this.semester = semester;

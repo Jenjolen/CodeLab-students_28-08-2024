@@ -1,5 +1,8 @@
 package app;
 
+import app.DAOs.StudentDAOImpl;
+import app.Models.Student;
+import app.config.HibernateConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.BeforeAll;

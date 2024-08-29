@@ -1,6 +1,6 @@
-package app;
+package app.DAOs;
 
-import jakarta.persistence.Entity;
+import app.Models.Course;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 

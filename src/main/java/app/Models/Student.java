@@ -1,4 +1,4 @@
-package app;
+package app.Models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +17,8 @@ import java.util.Objects;
 @Getter
 @Setter
 public class Student {
+
+    private String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
 
     @Column
     @Id
@@ -30,6 +33,12 @@ public class Student {
 
     @Column (name = "email")
    private String email;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @Column (name = "address")
    private String address;
@@ -63,5 +72,28 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getPhonenumber(), getEmail(), getAddress(), getIsStudying(), getDateOfBirth(), getEnrollmentDate());
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.email.matches(regex)){
+        System.out.println("Persist: all good in the hood");
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+        } else {
+        System.out.println("Persist: go out with honor 🗡");
+        throw new IllegalArgumentException("");
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        if (this.email.matches(regex)){
+            System.out.println("Update: all good in the hood");
+            updatedAt = LocalDateTime.now();
+        } else {
+        System.out.println("Update: go out with honor 🗡");
+        throw new IllegalArgumentException("");
+        }
     }
 }
