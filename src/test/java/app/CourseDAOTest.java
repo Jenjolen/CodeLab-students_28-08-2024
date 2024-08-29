@@ -63,7 +63,7 @@ class CourseDAOTest {
 
         Course actualCourse = dao.findEntity(2);
 
-        assertEquals(expectedCourse.getId(), actualCourse.getId());
+        assertEquals(expectedCourse, actualCourse);
 
     }
 

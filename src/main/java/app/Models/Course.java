@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.joda.time.DateTime;
 
+import java.util.Objects;
+
 @Entity
 @NoArgsConstructor
 @Table(name = "courses")
@@ -43,5 +45,18 @@ public class Course {
         this.semester = semester;
         this.classroom = classroom;
         this.timeOfCourse = timeOfCourse;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return semester == course.semester && name == course.name && Objects.equals(teacher, course.teacher) && Objects.equals(classroom, course.classroom) && Objects.equals(timeOfCourse, course.timeOfCourse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, teacher, semester, classroom, timeOfCourse);
     }
 }
