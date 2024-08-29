@@ -1,10 +1,7 @@
 package app;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,6 +27,7 @@ public class Student {
    private String phonenumber;
 
     @Column (name = "email")
+
    private String email;
 
     @Column (name = "address")
@@ -61,8 +59,22 @@ public class Student {
         this.enrollmentDate = enrollmentDate;
     }
 
+
+    public Student(String name, String phonenumber, String email, String address, Boolean isStudying, LocalDate dateOfBirth, LocalDate enrollmentDate, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.name = name;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.address = address;
+        this.isStudying = isStudying;
+        this.dateOfBirth = dateOfBirth;
+        this.enrollmentDate = enrollmentDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // sammenligner 2 objekters navn, og andre fields, og hvis alt er ens kan den godkendes for at være samme objekt
+        // således undgår vi at det "samme" objekt har flere forskellige hashcodes der derfor gør dem forskellige
         if (this == o) return true;
         if (!(o instanceof Student student)) return false;
         return Objects.equals(getName(), student.getName()) && Objects.equals(getPhonenumber(), student.getPhonenumber()) && Objects.equals(getEmail(), student.getEmail()) && Objects.equals(getAddress(), student.getAddress()) && Objects.equals(getIsStudying(), student.getIsStudying()) && Objects.equals(getDateOfBirth(), student.getDateOfBirth()) && Objects.equals(getEnrollmentDate(), student.getEnrollmentDate());
@@ -75,14 +87,30 @@ public class Student {
 
 
     @PrePersist
-    private void ifYouPersist() { // når vi kalder saveEntity metoden fra StudentDAO
-        System.out.println("Before the update");
+    private void ifYouPersist() { // når vi kalder saveEntity metoden fra StudentDAO, vi vil her sørge for at en email lavet uden @ ikke kan skabe en student
+        if(!this.email.matches(".*@.*")) {
+            throw new IllegalArgumentException("Email address is invalid");
+        }
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+
+
+
+
     }
 
     @PreUpdate
    private void ifYouUpdate() { // nr vi kalder updateEntity metodne fra StudentDAO
-        System.out.println("All new and freshly updated");
+        if(!this.email.matches(".*@.*")) {
+            throw new IllegalArgumentException("Email address is invalid");
+        }
+        this.updatedAt = LocalDateTime.now();
+
     }
+
+
+
+
 
 
 }

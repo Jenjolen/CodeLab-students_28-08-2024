@@ -17,7 +17,7 @@ class StudentDAOImplTest {
 
 
     private Student student1 = new Student("Patrick", "112", "p@tada", "campus", true, LocalDate.of(1995, 11, 4), LocalDate.of(2023, 8, 26));
-    private Student student2 = new Student("William", "145", "okpokok", "rytterknægten", true, LocalDate.of(1941, 9, 8), LocalDate.of(2023, 10, 28));
+    private Student student2 = new Student("William", "145", "okpo@kok", "rytterknægten", true, LocalDate.of(1941, 9, 8), LocalDate.of(2023, 10, 28));
     private Student student3 = new Student("Anna", "7589", "1234@com", "strandvejen", true, LocalDate.of(1995, 11, 4), LocalDate.of(2023, 8, 26));
     private Student student4 = new Student("Pa", "112", "p@tada8", "campus", true, LocalDate.of(1995, 12, 4), LocalDate.of(2023, 10, 28));
     private Student student5 = new Student("Da", "112", "p@tada2", "campus", true, LocalDate.of(1995, 12, 4), LocalDate.of(2023, 8, 26));
@@ -55,12 +55,6 @@ class StudentDAOImplTest {
     }
 
 
-//    @Test
-//    void persistAndUpdate() {
-//
-//        student1.ifYouPersist();
-//        student2.ifYouUpdate();
-//    }
 
 
 }
